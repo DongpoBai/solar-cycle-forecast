@@ -63,7 +63,7 @@ solar-cycle-forecast/
 ## Quick Start
 
 ```bash
-git clone https://github.com/HakuyuFujiwara/solar-cycle-forecast.git
+git clone https://github.com/DongpoBai/solar-cycle-forecast.git
 cd solar-cycle-forecast
 python -m venv .venv
 source .venv/bin/activate            # Windows: .venv\Scripts\Activate.ps1
@@ -133,7 +133,7 @@ Solar p-mode oscillation frequencies shift with the magnetic cycle. We extracted
 
 ## Related Project
 
-[solar-activity-pipeline](https://github.com/HakuyuFujiwara/solar-activity-pipeline) — Automated data engineering pipeline for solar activity indices, used in the USC Solar Physics Group's helioseismology research. That project handles data collection; this project uses the same data for ML forecasting.
+[solar-activity-pipeline](https://github.com/DongpoBai/solar-activity-pipeline) — Automated data engineering pipeline for solar activity indices, used in the USC Solar Physics Group's helioseismology research. That project handles data collection; this project uses the same data for ML forecasting.
 
 ## Background
 
