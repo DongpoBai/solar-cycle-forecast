@@ -14,7 +14,7 @@ Data sources and their coverage:
     - TSI TSIS-1 (LASP):     2018-present, daily
 
 Ingestion logic adapted from:
-    https://github.com/HakuyuFujiwara/solar-activity-pipeline
+    https://github.com/DongpoBai/solar-activity-pipeline
 """
 
 from __future__ import annotations
