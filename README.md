@@ -12,9 +12,10 @@ Solar activity directly affects satellite communications, GPS accuracy, power gr
 |-------|----------|-----------|-------|
 | Persistence (baseline) | 25.4 | — | Predict future = today's value |
 | Moving Average (baseline) | 16.9 | — | Past 30-day average |
-| **XGBoost (tuned)** | **13.5** | **17.4** | **Best performer, 20% below baseline** |
+| **XGBoost (tuned)** | **13.5** | **17.4** | **Best performer; 20% lower val RMSE than moving average** |
 | Random Forest | 17.2 | 20.4 | On par with baseline |
 | LSTM | 42.1 | 74.5 | Insufficient data for deep learning |
+Baseline RMSE on the test set (SC25) is not yet reported.
 
 **Target:** 30-day average International Sunspot Number (ISN). Validation on Solar Cycle 24 (2009–2019), test on Solar Cycle 25 (2020–2026).
 
@@ -25,7 +26,7 @@ We investigated whether solar p-mode oscillation frequency shifts — measured b
 - Frequency shifts correlate with ISN at r = 0.58 (p = 3.4×10⁻⁷)
 - No statistically significant lead detected at 72-day resolution
 - Adding helioseismic features to XGBoost improved RMSE by 0.7% (not significant)
-- Finer temporal resolution (3-day) is needed to detect potential short-timescale leads (see [Future Work](#future-work))
+- Follow-up at 3-day resolution: frequency shifts and activity are synchronous, with any lead or lag below 3 days (see [solar-frequency-shifts](https://github.com/DongpoBai/solar-frequency-shifts))
 
 ## Project Structure
 
@@ -55,9 +56,8 @@ solar-cycle-forecast/
 │   ├── raw/                        # Downloaded CSVs (gitignored)
 │   ├── processed/                  # Feature matrices
 │   └── README.md                   # Data source documentation
-├── results/
-│   └── figures/                    # All visualizations
-└── tests/
+└── results/
+    └── figures/                    # All visualizations
 ```
 
 ## Quick Start
@@ -110,7 +110,7 @@ Split by solar cycle boundaries (not random) to evaluate generalization to unsee
 
 ### Helioseismology
 
-Solar p-mode oscillation frequencies shift with the magnetic cycle. We extracted zero crossing frequencies from 66 pipeline runs (2010–2024) and performed cross-correlation analysis against ISN to test whether interior changes precede surface activity. At 72-day resolution, no lead was detected — finer resolution analysis is needed.
+Solar p-mode oscillation frequencies shift with the magnetic cycle. We extracted zero crossing frequencies from 66 pipeline runs (2010–2024) and performed cross-correlation analysis against ISN to test whether interior changes precede surface activity. At 72-day resolution, no lead was detected. A follow-up at 3-day resolution is in [solar-frequency-shifts](https://github.com/DongpoBai/solar-frequency-shifts).
 
 ## Key Insights
 
@@ -126,7 +126,7 @@ Solar p-mode oscillation frequencies shift with the magnetic cycle. We extracted
 
 ## Future Work
 
-- **3-day resolution helioseismology:** Extract per-3-day frequency shifts from the pipeline's Part 4 intermediate products to achieve 24× finer temporal resolution for lead-lag analysis. Literature suggests p-mode shifts may lead surface activity by days to weeks — a timescale invisible at 72-day resolution.
+- **3-day resolution helioseismology (done):** Completed in [solar-frequency-shifts](https://github.com/DongpoBai/solar-frequency-shifts). No lead or lag was detected, placing an upper bound of < 3 days.
 - **Solar cycle peak prediction:** Instead of short-term forecasting, predict the peak amplitude and timing of a new cycle during its early ascending phase, using the 200-year ISN record.
 - **Walk-forward cross-validation:** Implement expanding-window validation across multiple historical cycles to get more robust performance estimates.
 - **MDI extension:** Apply the helioseismology analysis to MDI data (1996–2010) to extend coverage to a full additional solar cycle.
