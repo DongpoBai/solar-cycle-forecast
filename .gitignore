@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 data/raw/*.csv
+!data/raw/zero_crossings_summary.csv
 models/
 *.egg-info/
 .DS_Store
