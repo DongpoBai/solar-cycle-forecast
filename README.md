@@ -15,6 +15,7 @@ Solar activity directly affects satellite communications, GPS accuracy, power gr
 | **XGBoost (tuned)** | **13.5** | **17.4** | **Best performer; 20% lower val RMSE than moving average** |
 | Random Forest | 17.2 | 20.4 | On par with baseline |
 | LSTM | 42.1 | 74.5 | Insufficient data for deep learning |
+
 Baseline RMSE on the test set (SC25) is not yet reported.
 
 **Target:** 30-day average International Sunspot Number (ISN). Validation on Solar Cycle 24 (2009–2019), test on Solar Cycle 25 (2020–2026).
